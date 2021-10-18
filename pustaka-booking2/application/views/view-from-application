@@ -1,0 +1,49 @@
+<html>
+<kepala>
+    <title > Form Input Matakuliah </title >
+</kepala >
+<tubuh >
+    <tengah >
+        <form  action =" <?=       base_url ( 'matakuliah/cetak' );      ?> "
+ metode =" posting " >
+            <tabel >
+                <tr >
+                    <th  colspan =" 3 " >
+                        Form Input Data Mata Kuliah
+                    </Th>
+                </tr >
+                <tr >
+                    <td  colspan =" 3 " >
+                        <jam >
+                    </td >
+                </tr >
+                <tr >
+                    <th > Kode MTK </th >
+                    <th > : </th >
+                    <td >
+                        <Jenis masukan  + "teks" nama=" kode " id =" kode " >
+                    </td >
+                </tr >
+                <tr >
+                    <th > SKS </th >
+                    <td > : </td >
+                    <td >
+                        <pilih  nama =" sks " id =" sks " >
+                            <option  value ="" > Pilih SKS </option >
+                            <nilai opsi  =" 2 " > 2 </opsi >
+                            <nilai opsi  =" 3 " > 3 </opsi >
+                            <nilai opsi  =" 4 " > 4 </opsi >
+                        </pilih >
+                    </td >
+                </tr >
+                <tr >
+                    <td  colspan =" 3 " align =" center " >
+                        <jenis masukan  =" kirim " nama =" Kirim " >
+                    </td >
+                </tr >
+            </tabel >
+    </bentuk >
+    </tengah >
+</tubuh >
+
+</html >
