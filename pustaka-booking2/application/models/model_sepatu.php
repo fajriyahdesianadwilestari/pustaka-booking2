@@ -1,4 +1,4 @@
-
+class Model_sepatu extends CI_Model
 { 
 	public $harga;
 

@@ -15,7 +15,7 @@ Aplication/view/v_input.php) <!DOCTYPE html>
 	}
 
 select {
-	width: 100%;
+	width: 100%;s
 }
 </style>
 
