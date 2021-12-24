@@ -1,90 +1,65 @@
-<!-- Begin Page Content -->
-<div class="container-fluid">
-    <div class="row justify-content-around">
-        <div class="col-12">
-            <div class="card mb-3" style="max-width: 54rem;">
-                <div class="row no-gutters">
-                    <?php
-                    foreach ($buku as $b) { ?>
-                        <div class="col-md-4">
-                            <img src="<?= base_url('assets/img/upload/') . $b['image']; ?>" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Buku <?= $b['judul_buku']; ?></h5>
-                                <form action="<?= base_url('buku/ubahBuku'); ?>" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="old_pict" value="<?= $b['image']; ?>">
-                                    <input type="hidden" name="id" value="<?= $b['id']; ?>">
-                                    <div class="form-group">
-                                        <label for="judul_buku">Judul Buku</label>
-                                        <input type="text" class="form-control formcontrol-user" id="judul_buku" name="judul_buku" placeholder="Masukkan Judul Buku" value="<?= $b['judul_buku']; ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <select name="id_kategori" class="custom-select form-control-user">
-                                            <option value="">Pilih Kategori</option>
-                                            <?php foreach ($kategori as $k) : ?>
-                                                <?php if ($k['id'] == $b['id_kategori']) : ?>
-                                                    <option value="<?= $k['id']; ?>" selected><?= $k['kategori']; ?></option>
-                                                <?php else : ?>
-                                                    <option value="<?= $k['id']; ?>"><?= $k['kategori']; ?></option>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="pengarang" name="pengarang" placeholder="Masukkan nama pengarang" value="<?= $b['pengarang']; ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control formcontrol-user" id="penerbit" name="penerbit" placeholder="Masukkan nama penerbit" value="<?= $b['penerbit']; ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <select name="tahun" class="custom-select form-control-user">
-                                            <option value="">Pilih Tahun</option>
-                                            <?php
-                                            for ($i = date('Y'); $i > 1000; $i--) : ?>
-                                                <?php if ($i == $b['tahun_terbit']) : ?>
-                                                    <option value="<?= $i; ?>" selected><?= $i; ?></option>
-                                                <?php else : ?>
-                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
-                                                <?php endif; ?>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="isbn" name="isbn" placeholder="Masukkan ISBN" value="<?= $b['isbn']; ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukkan nominal stok" value="<?= $b['stok']; ?>">
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-4">
-                                            <label for="image">Pilih Gambar</label>
-                                        </div>
-                                        <div class="col-3">
-
-                                            <input type="file" id="image" name="image">
-                                        </div>
-                                    </div>
-                                <?php } ?>
-
-                                <div class="form-group float-right mt-3">
-                                    <a href="<?= base_url('buku'); ?>" class="btn btn-secondary"><i class="fas fa-ban"></i> Batal</a>
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
+<div class="contrainer-fluid">
+	<?= $this->session->flashdata('pesan'); ?>
+	<div class="row">
+		<div class="col-lg-6">
+			<?php if (validation_erros()) { ?>
+				<div class="alert alert-danger" role="alert">
+				<?= validation_erros(); ?>	
+				</div>
+			<?php } ?>
+			<?= $this->session->flashdata('pesan'); ?>
+			<?php foreach ($buku as $b) { ?>
+			<form action="<?= base_url('buku/ubahBuku'); ?>" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<input type="hidden" name="id" id="id" value="<?php echo $b['id']; ?>">
+					<input type="text" class="form-control form-control-user" id="judul_buku" name="judul_buku" placeholder="Masuk judul buku" value="<?=$b['judul_buku']; ?>">
+				</div>
+				<div class="form-group">
+					<select name="id_kategori" class="form-control form-control-user">
+						<option value="<?= $id; ?>" selected="selected"><?= $k; ?></option>
+						<?php
+						foreach ($kategori as $k) { ?>
+						<option value="<?= $k['id']; ?>"><?= $k['kategori'];?></option>	
+					<?php } ?>	
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user" id="pengarang" name="pengarang" placeholder="Masuk Nama Pengarang" value="<?= $b['pengarang']; ?>">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user" id="penerbit" name="penerbit" placeholder="Masuk Nama Penerbit" value="<?= $b['penerbit'];?>">
+				</div>
+				<div class="form-group">
+					<select name="tahun" class="form-control form-control-user">
+					<option value="<?= $b['tahun_terbit']; ?>"><?=$b['tahun_terbit'];?></option>
+					<?php
+					for ($i=date('Y'); $i>1500; $i--) {?> 
+						<option value="<?= $i; ?>"><?=$i; ?></option>
+					<?php }	?>
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user" id="isbn" name="isbn" placeholder="Masukan ISBN" value="<?=$b ['isbn']; ?>">
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user" id="stok" name="stok" placeholder="Masukan Nominal Stok" value="<?=$b ['stok']; ?>">
+				</div>
+				<div class="form-group">
+					<?php
+					if (isset($b['image'])) { ?>
+						<input type="hidden" name="old_pict" value="<?= $b['image']; ?>">
+						<picture>
+							<source src="" type="image/svg+xml">
+								<img src="<?= base_url('assets/img/upload/').$b['image']; ?>" class="rounded mx-auto mb-3 d-blok" alt="..." width="200" height="250">
+						</picture>
+					<?php } ?>
+					<input type="file" class="form-control form-control-user" ig="image" name="image">
+				</div>
+					<div class="form-group">
+						<input type="button" class="form-control form-control-user btn btn-dark col-lg-3 mt-3" value="Kembali" onclick="window.history.go(-1)">
+						<input type="submit" class="form-control form-control-user btn btn-primary col-lg-3 mt-3" value="Update">
+					</div>
+			</form>	
+			<?php } ?>	
+		</div>
+	</div>
